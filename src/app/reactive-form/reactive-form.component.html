@@ -1,0 +1,85 @@
+
+<br />
+<div class="card mainForm">
+
+  <h3 class="card-header info-color white-text text-center py-4 bg-secondary">
+    <strong>Reactive Form</strong>
+  </h3>
+
+
+  <div class="card-body px-lg-5">
+
+    <form [formGroup]="reactiveForm" novalidate class="text-center border border-light p-5">
+
+      <div class="form-group" [ngClass]="{'has-error': (reactiveForm.get('firstName').touched || reactiveForm.get('firstName').dirty ) && !reactiveForm.get('firstName').valid }">
+        <input type="text" class="form-control" id="firstName" placeholder="Enter the First Name" formControlName="firstName">
+        <span class="help-block" *ngIf="(reactiveForm.get('firstName').touched || reactiveForm.get('firstName').dirty ) && reactiveForm.get('firstName').errors">
+          <span *ngIf="reactiveForm.get('firstName').errors.required" class="alert alert-danger">
+            Plaease enter your First Name and it's required Filed.
+          </span>
+          <span *ngIf="reactiveForm.get('firstName').errors.minlength" class="alert alert-danger">
+            Please Enter atleast 5 characters of First Name.
+          </span>
+          <span *ngIf="reactiveForm.get('firstName').errors.pattern" class="alert alert-danger">
+            Accept only characters in First Name Field.
+          </span>
+        </span>
+      </div>
+
+      <div class="form-group" [ngClass]="{'hasError': (reactiveForm.get('lastName').touched || reactiveForm.get('lastName').dirty ) && !reactiveForm.get('lastName').valid }">
+        <input type="text" class="form-control" id="lastName" placeholder="Enter the Last Name" formControlName="lastName">
+        <span class="help-block" *ngIf="(reactiveForm.get('lastName').touched || reactiveForm.get('lastName').dirty ) && reactiveForm.get('lastName').errors">
+          <span *ngIf="reactiveForm.get('lastName').errors.required" class="alert alert-danger">
+            Plaease enter your Last Name and it's required Filed.
+          </span>
+          <span *ngIf="reactiveForm.get('lastName').errors.maxlength" class="alert alert-danger">
+            Last Name Maximum Length of 8 characters.
+          </span>
+          <span *ngIf="reactiveForm.get('lastName').errors.pattern" class="alert alert-danger">
+            Accept only characters in First Name Field.
+          </span>
+        </span>
+      </div>
+
+      <div class="form-group" [ngClass]="{'hasError': (reactiveForm.get('email').touched || reactiveForm.get('email').dirty ) && !reactiveForm.get('email').valid }">
+        <input type="text" class="form-control" id="email" placeholder="Enter the Email" formControlName="email">
+        <span class="help-block" *ngIf="(reactiveForm.get('email').touched || reactiveForm.get('email').dirty ) && reactiveForm.get('email').errors">
+          <span *ngIf="reactiveForm.get('email').errors.required" class="alert alert-danger">
+            Plaease enter your email and it's required Filed.
+          </span>
+          <span *ngIf="reactiveForm.get('email').errors.pattern" class="alert alert-danger">
+            Eanter your valid Email.
+          </span>
+        </span>
+      </div>
+
+      <div class="form-group" [ngClass]="{'hasError': (reactiveForm.get('age').touched || reactiveForm.get('age').dirty ) && !reactiveForm.get('age').valid }">
+        <input type="text" class="form-control" id="age" formControlName="age">
+      </div>
+
+      <div class="form-group" [ngClass]="{'hasError': (reactiveForm.get('phoneNumber').touched || reactiveForm.get('phoneNumber').dirty ) && !reactiveForm.get('phoneNumber').valid }">
+        <input type="text" class="form-control" id="phoneNumber" placeholder="Enter your Phone Number" formControlName="phoneNumber">
+        <span class="help-block" *ngIf="(reactiveForm.get('phoneNumber').touched || reactiveForm.get('phoneNumber').dirty ) && reactiveForm.get('phoneNumber').errors">
+          <span *ngIf="reactiveForm.get('phoneNumber').errors.required" class="alert alert-danger">
+            Plaease enter your Phone Number and it's required Filed.
+          </span>
+          <span *ngIf="reactiveForm.get('phoneNumber').errors.minlength" class="alert alert-danger">
+            Please Enter 10 Digit of Phone Number.
+          </span>
+          <span *ngIf="reactiveForm.get('phoneNumber').errors.pattern" class="alert alert-danger">
+            Accept only Number in Phone Number Field.
+          </span>
+        </span>
+      </div>
+
+      <div class="form-group">
+          <button type="submit" (click)="addData()" [disabled]="!reactiveForm.valid" class="btn btn-success btn-block">Save</button>
+      </div>
+      
+    </form>
+
+    <h5 class="card-header info-color white-text text-center py-4 bg-secondary">
+      Reactive Form Value:{{reactiveForm.value | json}}
+    </h5>
+  </div>
+</div>
